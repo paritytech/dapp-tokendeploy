@@ -29,7 +29,7 @@ import Transfer from './Transfer';
 
 import '@parity/shared/assets/fonts/Roboto/font.css';
 import '@parity/shared/assets/fonts/RobotoMono/font.css';
-import '@parity/dapps/style.css';
+import './style.css';
 
 ReactDOM.render(
   <AppContainer>
