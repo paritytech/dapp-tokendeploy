@@ -15,6 +15,7 @@
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
 const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HappyPack = require('happypack');
 const webpack = require('webpack');
@@ -22,16 +23,15 @@ const webpack = require('webpack');
 const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  devtool: isProd
-    ? '#hidden-source-map'
-    : '#source-map',
+  devtool: '#source-map',
   context: path.join(__dirname, 'src'),
   entry: {
-    bundle: './index.js'
+    dist: './index.js'
   },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].js'
+    publicPath: 'dist/',
+    filename: '../dist.js'
   },
 
   module: {
@@ -71,45 +71,56 @@ module.exports = {
       {
         test: /\.css$/,
         include: /semantic-ui-css/,
-        use: ['style-loader', 'css-loader']
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                minimize: true
+              }
+            }
+          ]
+        })
       },
       {
         test: /\.css$/,
         exclude: /semantic-ui-css/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1,
-              localIdentName: '[name]_[local]_[hash:base64:10]',
-              minimize: true,
-              modules: true
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 1,
+                localIdentName: '[name]_[local]_[hash:base64:10]',
+                minimize: true,
+                modules: true
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: (loader) => [
+                  require('postcss-import'),
+                  require('postcss-nested'),
+                  require('postcss-simple-vars')
+                ]
+              }
             }
-        },
-        {
-        loader: 'postcss-loader',
-        options: {
-          plugins: (loader) => [
-            require('postcss-import'),
-            require('postcss-nested'),
-            require('postcss-simple-vars')
           ]
-     }
+        })
+      },
+      {
+        test: /\.(png|jpg|svg|woff|woff2|ttf|eot|otf)(\?.*)?$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[hash:10].[ext]',
+            outputPath: '',
+            useRelativePath: false
+          }
         }
-      ]
-    },
-      {
-        test: /\.(png|jpg)$/,
-        use: ['base64-inline-loader']
-      },
-      {
-        test: /\.(woff|woff2|ttf|eot|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        use: ['base64-inline-loader']
-      },
-      {
-        test: /\.svg$/,
-        use: ['svg-inline-loader']
       }
     ],
     noParse: [
@@ -128,6 +139,9 @@ module.exports = {
     fs: 'empty'
   },
   plugins: [
+    new ExtractTextPlugin({
+      filename: '../dist.css'
+    }),
     new HappyPack({
       id: 'babel',
       threads: 4,
@@ -136,10 +150,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: '../index.html',
       template: './index.ejs',
-      chunks: ['bundle']
+      chunks: ['dist']
     }),
     isProd && new webpack.optimize.UglifyJsPlugin({
       screwIe8: true,
+      sourceMap: true,
       compress: {
         warnings: false
       },
