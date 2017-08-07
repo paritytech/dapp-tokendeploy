@@ -23,7 +23,9 @@ const webpack = require('webpack');
 const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  devtool: '#source-map',
+  devtool: isProd
+    ? '#source-map'
+    : '#eval',
   context: path.join(__dirname, 'src'),
   entry: {
     dist: './index.js'
@@ -33,7 +35,6 @@ module.exports = {
     publicPath: 'dist/',
     filename: '../dist.js'
   },
-
   module: {
     rules: [
       {
@@ -48,7 +49,7 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        exclude: /(node_modules)/,
+        exclude: /node_modules/,
         use: [ {
           loader: 'happypack/loader',
           options: {
@@ -77,7 +78,7 @@ module.exports = {
             {
               loader: 'css-loader',
               options: {
-                minimize: true
+                minimize: isProd
               }
             }
           ]
@@ -94,7 +95,7 @@ module.exports = {
               options: {
                 importLoaders: 1,
                 localIdentName: '[name]_[local]_[hash:base64:10]',
-                minimize: true,
+                minimize: isProd,
                 modules: true
               }
             },
@@ -152,6 +153,12 @@ module.exports = {
       template: './index.ejs',
       chunks: ['dist']
     }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+      }
+    }),
+    isProd && new webpack.optimize.ModuleConcatenationPlugin(),
     isProd && new webpack.optimize.UglifyJsPlugin({
       screwIe8: true,
       sourceMap: true,
