@@ -1,0 +1,8 @@
+{
+  "id": "dapp-tokendeploy",
+  "name": "dapp-tokendeploy",
+  "description": "Dapp for Parity",
+  "author": "Parity Team <admin@parity.io>",
+  "version": "1.99.99",
+  "iconUrl": ""
+}
