@@ -16,7 +16,7 @@
 
 import BigNumber from 'bignumber.js';
 
-import { url as etherscanUrl } from '@parity/etherscan/links';
+import { txLink as etherscanTxLink } from '@parity/etherscan';
 import * as abis from '@parity/shared/contracts/abi';
 
 import { api } from './parity';
@@ -256,23 +256,24 @@ export function loadAllTokens () {
 export function loadBalances (addresses) {
   return loadAllTokens()
     .then((tokens) => {
-      return Promise.all(
-        tokens.map((token) => {
-          return Promise.all(
-            addresses.map((address) => loadTokenBalance(token.address, address))
-          );
-        })
-      )
-      .then((_balances) => {
-        return tokens.map((token, tindex) => {
-          const balances = _balances[tindex];
+      return Promise
+        .all(
+          tokens.map((token) => {
+            return Promise.all(
+              addresses.map((address) => loadTokenBalance(token.address, address))
+            );
+          })
+        )
+        .then((_balances) => {
+          return tokens.map((token, tindex) => {
+            const balances = _balances[tindex];
 
-          token.balances = addresses.map((address, aindex) => {
-            return { address, balance: balances[aindex] };
+            token.balances = addresses.map((address, aindex) => {
+              return { address, balance: balances[aindex] };
+            });
+            return token;
           });
-          return token;
         });
-      });
     })
     .catch((error) => {
       console.error('loadBalances', error);
@@ -290,5 +291,5 @@ export function loadTokenBalance (tokenAddress, address) {
 }
 
 export function txLink (txHash) {
-  return `https://${etherscanUrl(false, netVersion)}/tx/${txHash}`;
+  return etherscanTxLink(txHash, false, netVersion);
 }
