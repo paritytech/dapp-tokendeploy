@@ -64,8 +64,8 @@
   },
   "dependencies": {
     "@parity/api": "^2",
-    "@parity/shared": "paritytech/js-shared",
-    "@parity/ui": "paritytech/js-ui"
+    "@parity/shared": "^2",
+    "@parity/ui": "^2"
   },
   "peerDependencies": {}
 }
