@@ -21,9 +21,9 @@
     "watch": "webpack --colors --progress --watch"
   },
   "devDependencies": {
-    "@parity/api": "^2",
-    "@parity/shared": "^2",
-    "@parity/ui": "^2",
+    "@parity/api": "2.1.x",
+    "@parity/shared": "2.1.x",
+    "@parity/ui": "2.1.x",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^7.2.3",
