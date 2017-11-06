@@ -39,7 +39,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        include: /node_modules\/@parity/,
+        include: /node_modules\/@parity\/dapp-/,
         use: [ {
           loader: 'happypack/loader',
           options: {

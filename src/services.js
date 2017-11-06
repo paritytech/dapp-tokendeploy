@@ -17,7 +17,7 @@
 import BigNumber from 'bignumber.js';
 
 import { txLink as etherscanTxLink } from '@parity/etherscan';
-import * as abis from '@parity/shared/contracts/abi';
+import * as abis from '@parity/shared/lib/contracts/abi';
 
 import { api } from './parity';
 
