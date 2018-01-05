@@ -240,7 +240,7 @@ export default class Deployment extends Component {
 
     tokenreg
       .fromTLA.call({}, [tla])
-      .then(([id, addr, base, name, owner]) => {
+      .then(([, , , , owner]) => {
         if (owner !== '0x0000000000000000000000000000000000000000') {
           this.setState({ tlaError: ERRORS.usedtla });
         } else if (tlaError === ERRORS.usedtla) {
