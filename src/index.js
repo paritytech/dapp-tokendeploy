@@ -16,9 +16,6 @@
 
 import React from 'react';
 import { Redirect, Router, Route, hashHistory } from 'react-router';
-import { AppContainer } from 'react-hot-loader';
-
-import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import Deploy from './Deploy';
 import Application from './Application';
@@ -27,21 +24,19 @@ import Transfer from './Transfer';
 
 import '@parity/shared/assets/fonts/Roboto/font.css';
 import '@parity/shared/assets/fonts/RobotoMono/font.css';
-import './style.css';
 
-injectTapEventPlugin();
+import './style.css';
+import './setup.js';
 
 const App = () => (
-  <AppContainer>
-    <Router history={ hashHistory }>
-      <Redirect from='/' to='/overview' />
-      <Route path='/' component={ Application }>
-        <Route path='deploy' component={ Deploy } />
-        <Route path='overview' component={ Overview } />
-        <Route path='transfer' component={ Transfer } />
-      </Route>
-    </Router>
-  </AppContainer>
+  <Router history={ hashHistory }>
+    <Redirect from='/' to='/overview' />
+    <Route path='/' component={ Application }>
+      <Route path='deploy' component={ Deploy } />
+      <Route path='overview' component={ Overview } />
+      <Route path='transfer' component={ Transfer } />
+    </Route>
+  </Router>
 );
 
 export default App;

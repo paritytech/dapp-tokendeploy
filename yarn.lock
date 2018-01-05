@@ -63,16 +63,16 @@
     js-sha3 "0.5.5"
     utf8 "^2.1.2"
 
-"@parity/api@2.1.14", "@parity/api@2.1.x":
+"@parity/api@2.1.14", "@parity/api@2.1.x", "@parity/api@github:paritytech/js-api#32804bc964104bfc750f442a92aadbc4a2752c23":
   version "2.1.14"
-  resolved "https://registry.yarnpkg.com/@parity/api/-/api-2.1.14.tgz#65ad222a733a2ca08bae63fe3f352c27966447be"
+  resolved "https://codeload.github.com/paritytech/js-api/tar.gz/32804bc964104bfc750f442a92aadbc4a2752c23"
   dependencies:
     "@parity/abi" "2.1.x"
     "@parity/jsonrpc" "2.1.x"
     "@parity/wordlist" "1.1.x"
     bignumber.js "3.0.1"
     blockies "0.0.2"
-    es6-error "^4.0.0"
+    es6-error "4.0.2"
     es6-promise "^4.1.1"
     eventemitter3 "^2.0.2"
     isomorphic-fetch "^2.2.1"
@@ -123,7 +123,7 @@
     useragent.js "^0.5.6"
     yargs "6.6.0"
 
-"@parity/shared@2.2.x":
+"@parity/shared@2.2.20", "@parity/shared@2.2.x":
   version "2.2.20"
   resolved "https://registry.yarnpkg.com/@parity/shared/-/shared-2.2.20.tgz#f0ecf669751f8a80e3e8743d33b370633858f1c2"
   dependencies:
@@ -142,7 +142,7 @@
     useragent.js "^0.5.6"
     yargs "6.6.0"
 
-"@parity/ui@2.2.x":
+"@parity/ui@2.2.15":
   version "2.2.15"
   resolved "https://registry.yarnpkg.com/@parity/ui/-/ui-2.2.15.tgz#a2f0567bea539303200ca0cd08edd73f9e017bbe"
   dependencies:
@@ -2785,9 +2785,9 @@ es5-ext@^0.10.14, es5-ext@^0.10.35, es5-ext@^0.10.9, es5-ext@~0.10.14:
     es6-iterator "~2.0.1"
     es6-symbol "~3.1.1"
 
-es6-error@^4.0.0:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/es6-error/-/es6-error-4.1.1.tgz#9e3af407459deed47e9a91f9b885a84eb05c561d"
+es6-error@4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/es6-error/-/es6-error-4.0.2.tgz#eec5c726eacef51b7f6b73c20db6e1b13b069c98"
 
 es6-iterator@^2.0.1, es6-iterator@~2.0.1:
   version "2.0.3"
@@ -5030,9 +5030,9 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
-"jsqr@https://github.com/JodusNodus/jsQR.git":
+"jsqr@git+https://github.com/JodusNodus/jsQR.git":
   version "0.2.2"
-  resolved "https://github.com/JodusNodus/jsQR.git#5ba1acefa1cbb9b2bc92b49f503f2674e2ec212b"
+  resolved "git+https://github.com/JodusNodus/jsQR.git#5ba1acefa1cbb9b2bc92b49f503f2674e2ec212b"
 
 jsx-ast-utils@^1.4.0:
   version "1.4.1"
@@ -7854,7 +7854,7 @@ sockjs@0.3.18:
     faye-websocket "^0.10.0"
     uuid "^2.0.2"
 
-"solc@github:ngotchac/solc-js", solc@ngotchac/solc-js:
+"solc@github:ngotchac/solc-js":
   version "0.4.4"
   resolved "https://codeload.github.com/ngotchac/solc-js/tar.gz/04eb38cc3003fba8cb3656653a7941ed36408818"
   dependencies:

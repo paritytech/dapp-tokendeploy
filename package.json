@@ -24,9 +24,9 @@
     "parity-react-scripts": "github:paritytech/parity-react-scripts#ed275fd"
   },
   "dependencies": {
-    "@parity/api": "2.1.x",
-    "@parity/shared": "2.2.x",
-    "@parity/ui": "2.2.x"
+    "@parity/api": "github:paritytech/js-api#32804bc964104bfc750f442a92aadbc4a2752c23",
+    "@parity/shared": "2.2.20",
+    "@parity/ui": "2.2.15"
   },
   "peerDependencies": {}
 }
