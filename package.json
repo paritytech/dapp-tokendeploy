@@ -20,7 +20,8 @@
     "test": "parity-react-scripts test",
     "lint:css": "parity-react-scripts lint-css",
     "lint:js": "parity-react-scripts lint-js",
-    "release": "parity-react-scripts release"
+    "release": "parity-react-scripts release",
+    "postinstall": "cd node_modules/@parity/api && npm install && npm run build"
   },
   "devDependencies": {
     "parity-react-scripts": "github:paritytech/parity-react-scripts#e1e22fc"
