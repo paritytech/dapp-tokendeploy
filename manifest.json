@@ -3,6 +3,6 @@
   "name": "dapp-tokendeploy",
   "description": "Basic token deployment dapp",
   "author": "Parity Team <admin@parity.io>",
-  "version": "1.99.99",
+  "version": "1.99.100",
   "iconUrl": "icon.png"
 }

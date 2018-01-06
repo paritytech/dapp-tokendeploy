@@ -14,13 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import ReactDOM from 'react-dom';
 import React from 'react';
 import { Redirect, Router, Route, hashHistory } from 'react-router';
-import { AppContainer } from 'react-hot-loader';
-
-import injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
 
 import Deploy from './Deploy';
 import Application from './Application';
@@ -29,40 +24,19 @@ import Transfer from './Transfer';
 
 import '@parity/shared/assets/fonts/Roboto/font.css';
 import '@parity/shared/assets/fonts/RobotoMono/font.css';
-import './style.css';
 
-ReactDOM.render(
-  <AppContainer>
-    <Router history={ hashHistory }>
-      <Redirect from='/' to='/overview' />
-      <Route path='/' component={ Application }>
-        <Route path='deploy' component={ Deploy } />
-        <Route path='overview' component={ Overview } />
-        <Route path='transfer' component={ Transfer } />
-      </Route>
-    </Router>
-  </AppContainer>,
-  document.querySelector('#container')
+import './style.css';
+import './setup.js';
+
+const App = () => (
+  <Router history={ hashHistory }>
+    <Redirect from='/' to='/overview' />
+    <Route path='/' component={ Application }>
+      <Route path='deploy' component={ Deploy } />
+      <Route path='overview' component={ Overview } />
+      <Route path='transfer' component={ Transfer } />
+    </Route>
+  </Router>
 );
 
-if (module.hot) {
-  module.hot.accept('./Application/index.js', () => {
-    require('./Application/index.js');
-    require('./Overview/index.js');
-    require('./Transfer/index.js');
-
-    ReactDOM.render(
-      <AppContainer>
-        <Router history={ hashHistory }>
-          <Redirect from='/' to='/overview' />
-          <Route path='/' component={ Application }>
-            <Route path='deploy' component={ Deploy } />
-            <Route path='overview' component={ Overview } />
-            <Route path='transfer' component={ Transfer } />
-          </Route>
-        </Router>
-      </AppContainer>,
-      document.querySelector('#container')
-    );
-  });
-}
+export default App;

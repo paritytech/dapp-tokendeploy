@@ -1,6 +1,5 @@
 .build
 .happypack
-package-lock.json
 
 # Logs
 logs
@@ -48,6 +47,7 @@ typings/
 
 # Optional eslint cache
 .eslintcache
+.stylelintcache
 
 # Optional REPL history
 .node_repl_history
@@ -60,3 +60,7 @@ typings/
 
 # dotenv environment variables file
 .env
+
+# The `build` directory
+build/
+build.zip

@@ -75,7 +75,7 @@ export default class Header extends Component {
   onNavigate = (route) => {
     const { router } = this.context;
 
-    return (event) => {
+    return () => {
       router.push(`/${route}`);
     };
   }
